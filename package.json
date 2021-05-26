@@ -24,6 +24,7 @@
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
-    "@babylonjs/core": "^4.2.0"
+    "@babylonjs/core": "^4.2.0",
+    "babylonjs-serializers": "^4.2.0"
   }
 }
