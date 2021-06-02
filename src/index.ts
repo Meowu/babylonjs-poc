@@ -7,7 +7,7 @@ import {Vector3, Vector4} from "@babylonjs/core/Maths/math.vector"
 import {Sound, Color3, StandardMaterial, Texture, Mesh, SceneLoader} from "@babylonjs/core";
 import "@babylonjs/core/Materials/standardMaterial"; // 需要事先导入默认材质。
 import { GLTF2Export } from "babylonjs-serializers";
-
+import { createAxes } from "./axis";
 // import { SampleMaterial } from "./Materials/SampleMaterial"
 
 const exportBtn = document.querySelector(".save-btn");
@@ -44,6 +44,7 @@ const buildBox = (width: number) => {
     boxMat.diffuseTexture = new Texture("https://assets.babylonjs.com/environments/cubehouse.png", scene);
   }
   const faceUV = [];
+  // 图片不同的部分作为材质渲染不同的面。
   if (width == 2) {
     faceUV[0] = new Vector4(0.6, 0.0, 1.0, 1.0); // rear face
     faceUV[1] = new Vector4(0.0, 0.0, 0.4, 1.0); // front face
@@ -150,7 +151,7 @@ const buildDwellings = () => {
   }
 }
 
-buildDwellings();
+// buildDwellings();
 // SceneLoader.ImportMeshAsync("", "https://assets.babylonjs.com/meshes/", "village.glb")
 // SceneLoader.ImportMeshAsync("Village", "https://assets.babylonjs.com/meshes/", "village.glb", scene)
 // .then(res => {
@@ -158,6 +159,7 @@ buildDwellings();
 // }).catch(e => {
 //     console.log("ImportScene Error", e);
 // })
+createAxes(scene);
 
 exportBtn.addEventListener("click", () => {
   return GLTF2Export.GLBAsync(scene, "scene_" + Date.now()).then(glb => {
